@@ -1,16 +1,21 @@
 import logo from './logo.svg';
+
+//component
 import Header from './component/Header'
 import Footer from './component/Footer'
+import ProductList from './component/ProductList'
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <App className="App">
       <Header/>
-
+      <ProductList className=""
+      />
       <Footer/>
-    </div>
+    </App>
   );
 }
 
 export default App;
+

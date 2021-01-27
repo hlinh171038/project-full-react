@@ -39,3 +39,8 @@
          3.res.json(variable)
          4.try - catch to examinate err
          5.async - await
+------------------------------------------------------------------------------------------------------------------------------------------'
+front-end
+1.footer and header
+    - install reactstrap bootstrap
+    - install and use flaticon and google-font
