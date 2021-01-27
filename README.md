@@ -1,70 +1,41 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+        BUILD A RESTFULL API WITH EXPRESS NODE.JS AND MONGO DB
+    1. SET UP
+        1.intall express
+        2. install mongoose nodemon body-parser shortid
+        3. add line: ("server": "nodemon <-name of app to build>"),
+        4. cmd => npm run <-name of app to build>
+    2.set up server.js page
+        1.route (get)
+        2.connect to mongodb
+        3. do middleware post
+        4.create folder model contained schema
+        5. create post schema
+        6.intall body-parser to post (must put before all router)
+    3.method get
+        1.use method find() to finded all data = variable
+        2.res.json(<-variable>) to converse to json
+        3.use try catch to catched err
+        4. use async-await
+    4.method post
+        1. new Post({key:res.body...} ) = variable
+        2.variale.save() --> this is promise
+        3..then(data=>{ res.json(data)})
+        4..catch(err =>{console.log({message:err})})
+    5.method find by id(mongo) /get(express)
+        1.use paramid for './:<-paramsId>'
+        2.use method findById(req.params.<-params id>) = variable
+        3.res.json(variable)
+        4.try - catch to examinate err
+        5.async - await
+    6.method remove(mongo) /delete(paramsId)(express)
+         1.use paramid for './:<-paramsId>'
+         2. use method remove({_id:param})
+         3.res.json(variable)
+         4.try - catch to examinate err
+         5.async - await
+    7.method updateOne(mongo) /patch(paramsId)(express)
+        1.use paramid for './:<-paramsId>'
+         2. use method updateOne({_id:param},{$set:req.body.....})
+         3.res.json(variable)
+         4.try - catch to examinate err
+         5.async - await
