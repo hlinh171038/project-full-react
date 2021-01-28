@@ -10,8 +10,10 @@ import {
     NavbarText
   } from 'reactstrap';
 
-
-function Header() {
+import {
+    Link
+  } from "react-router-dom"; 
+function NavbarHeader() {
     return (
         <HeaderWarp>
             <Navbar expand="md">
@@ -19,7 +21,7 @@ function Header() {
                 <Collapse navbar>
                 <Nav className="mr-auto" navbar>
                     <NavItem>
-                    <NavLink >Components</NavLink>
+                    <NavLink ><Link to="/product">Product</Link></NavLink>
                     </NavItem>
                     <NavItem>
                     <NavLink >GitHub</NavLink>
@@ -32,8 +34,13 @@ function Header() {
     )
 }
 
-export default Header
- const HeaderWarp = styled.div`
-   background:var(--mainBlue);
-   color:var(--mainWhite);
- `
+export default NavbarHeader
+const HeaderWarp = styled.div`
+    background:var(--mainBlue);
+    color:var(--mainWhite);
+    position:absolute;
+    top:0;
+    width: 100%;
+    position: fixed;
+    z-index:9;
+`

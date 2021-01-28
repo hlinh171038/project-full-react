@@ -1,9 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
+const cors = require('cors')
+
 // middleware
 const product = require('./src/component/route/productRoute')
 const app = express();
+app.use(cors())
 app.use(bodyParser.json())
 app.get('/', (req,res) =>{
   res.send('hello word')

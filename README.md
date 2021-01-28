@@ -39,8 +39,18 @@
          3.res.json(variable)
          4.try - catch to examinate err
          5.async - await
+    8. require cors npm to call API (*****)
 ------------------------------------------------------------------------------------------------------------------------------------------'
 front-end
 1.footer and header
     - install reactstrap bootstrap
     - install and use flaticon and google-font
+    - set up root color
+    - install and use style-components
+2.product page
+3.router 
+    -router for product
+4.product page
+5.use redux
+    + redux for product to call all product
+    + fetchPeoduct ( axios) to call data

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import {Button} from 'reactstrap'
+
 function Footer() {
     return (
         <FooterWrap className="font-root-content">
@@ -15,5 +15,9 @@ const FooterWrap = styled.div`
     color:var(--mainWhite);
     font-size:100%;
     text-align:center;
-    padding:1.5rem
+    padding:0.5rem;
+    position:absolute;
+    bottom:0;
+    width: 100%;
+    position: fixed;
 `
