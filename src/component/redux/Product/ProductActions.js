@@ -1,35 +1,52 @@
 import * as type from './ProductTypeAction'
 import axios from 'axios'
-export const fetchProductRequire = () =>{
-    return {
-        type:type.FETCH_PRODUCT_REQUIRE
-    }
+export const fetchProducts =() =>async(dispatch) =>{
+   const res = await axios.get('http://localhost:8000/product');
+    dispatch ({
+        type: type.FETCH_PRODUCTS,
+        payload:res.data
+    })
 }
-export const fetchProductSuccess = (product) =>{
-    return {
-        type:type.FETCH_PRODUCT_SUCCESS,
-        payload:product
-    }
-}
-export const fetchProductFailure = (error) =>{
-    return {
-        type:type.FETCH_PRODUCT_FAILURE,
-        payload:error
-    }
-}
-export const fetchProduct = () =>{
+export const filterProducts = (products,size) =>{
+    let items = [];
+   items = size ==="" ?products:products.filter(x=>x.availableSizes.indexOf(size) >=0)
     return (dispatch) =>{
-        dispatch(fetchProductRequire())
-        axios.get('http://localhost:8000/product')
-        .then(response =>{
-            // call product API
-            const product = response.data;
-            console.log("product",product)
-            dispatch(fetchProductSuccess(product))
+        dispatch({
+            type:type.FILTER_PRODUCTS_BY_SIZE,
+            payload: {
+                size: size,
+                items: items
+            }
         })
-        .catch(error =>{
-            const msg = error.message
-            dispatch(fetchProductFailure(msg))
-        })
+        console.log(items);
+       
+    }
+   
+}
+export const sortProducts =(filterProducts,sort)=>{
+    //coppy
+    const sortedProducts = filterProducts.slice();
+    //comlement
+    if(sort ===""){
+        sortedProducts.sort((a,b)=>(a._id>b._id? 1 : -1))
+    }else {
+        sortedProducts.sort((a,b) =>
+            sort ==="lowestprice"
+                ? a.price > b.price
+                    ? 1
+                    : -1
+                :a.price > b.price
+                    ? -1
+                    : 1
+        );
+    }
+    return (dispatch) =>{
+       dispatch({
+        type:type.ORDER_PRODUCTS_BY_PRICE,
+        payload: {
+            sort:sort,
+            items:sortedProducts
+        }
+       })
     }
 }

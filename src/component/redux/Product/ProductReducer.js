@@ -1,28 +1,25 @@
 const initialState = {
-    loading: false,
-    data:[],
-    error:''
+    
 }
 export const productReducer = (state = initialState, action) =>{
     switch(action.type){
-        case 'FETCH_PRODUCT_REQUIRE':
+        case 'FETCH_PRODUCTS':
             return {
                 ...state,
-                loading: true
+                items:action.payload,
+                filteredItems:action.payload
             }
-        case 'FETCH_PRODUCT_SUCCESS':
+        case 'FILTER_PRODUCTS_BY_SIZE':
             return {
                 ...state,
-                loading: false,
-                data:action.payload,
-                error:''
+                size: action.payload.size,
+                filteredItems: action.payload.items,
             }
-        case 'FETCH_PRODUCT_FAILURE':
+        case 'ORDER_PRODUCTS_BY_PRICE':
             return {
                 ...state,
-                loading:false,
-                data:[],
-                error:action.payload
+                sort: action.payload.sort,
+                filteredItems:action.payload.items
             }
         default:
             return state

@@ -1,19 +1,22 @@
 import React from 'react'
-
-function Filter() {
+import {connect} from 'react-redux'
+import {filterProducts,sortProducts} from './redux/Product/ProductActions'
+function Filter({filterProducts,sortProducts,size,sort,products,filteredItems}) {
     return (
-        <div className="d-flex mt-3 ml-4  ">
-            <div className="filter-result ml-3">Product :0</div>
+        <div className="">
+            <h5>All The Current Product</h5>
+            <div className="filter-result ml-3">Product :{filteredItems && filteredItems.length}</div>
+            <h5>Filter Product To Price</h5>
             <div className="filter-sort ml-5">
-                order
-                <select >
+                <select value ={sort} onChange={(e)=>sortProducts(filteredItems,e.target.value)}>
                     <option value="">Nomal</option>
                     <option value="lowest">Lowest</option>
                     <option value="highest">Hightest</option>
                 </select>
             </div>
+            <h5>Filter Product To Size</h5>
             <div className="filter-size ml-5">
-            <select >
+            <select value={size} onChange={(e)=>filterProducts(products,e.target.value)}>
                 <option value="">ALL</option>
                 <option value="XXL">XXL</option>
                 <option value="S">S</option>
@@ -25,5 +28,12 @@ function Filter() {
         </div>
     )
 }
-
-export default Filter
+export default connect((state) =>({
+    size:state.products.size,
+    sort:state.products.sort,
+    products:state.products.items,
+    filteredItems:state.products.filteredItems
+}),{
+    filterProducts,
+    sortProducts
+})(Filter)

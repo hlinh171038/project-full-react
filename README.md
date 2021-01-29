@@ -54,3 +54,4 @@ front-end
 5.use redux
     + redux for product to call all product
     + fetchPeoduct ( axios) to call data
+6.filter

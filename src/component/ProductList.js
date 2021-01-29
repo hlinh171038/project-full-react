@@ -1,29 +1,25 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useState} from 'react'
 import styled from 'styled-components'
 import Product from './Product'
 import Filter from './Filter'
 import {connect} from 'react-redux'
-import {fetchProduct} from './redux/Product/ProductActions'
-function ProductList({productData,fetchProduct}) {
+import {fetchProducts} from './redux/Product/ProductActions'
+function ProductList({products,fetchProducts}) {
+    //call API product
     useEffect(() => {
-        fetchProduct()
-    }, [])
-    return productData.loading ?(
-        <h2>Loading ... </h2>
-    ):productData.error ?(
-        <h2>{productData.eror}</h2>
-    ):(
-        <div style={{"position":"absolute",top:"7%" }} className="row">
-        <div className="col-md-1">
-            <Filter />
-        </div>
-        <ProductListWarp className="col-md-8">
-         {   productData.data && productData.data.map(product =>{
-            return <Product title={product.title} image={product.image}/>
-        })}
-        </ProductListWarp>
-        </div>
-    )
+       fetchProducts()
+    }, []);
+    
+    return <div style={{"position":"absolute",top:"7%" }} className="row">
+    <div className="col-md-2">
+        <Filter />
+    </div>
+    <ProductListWarp className="col-md-8">
+     {   products &&  products.map(product =>{
+        return <Product title={product.title} image={product.image}/>
+    })}
+    </ProductListWarp>
+    </div>
     // return (
     //     // <ProductListWarp>
     //     //     this is {productData.error}
@@ -32,17 +28,17 @@ function ProductList({productData,fetchProduct}) {
     // )
 }
 
-const mapStateToProps =(state) =>{
-    return {
-        productData:state.products
-    }
-}
-const mapDispatchToProps = dispatch =>{
-    return {
-        fetchProduct:() =>dispatch(fetchProduct())
-    }
-}
-export default connect(mapStateToProps,mapDispatchToProps)(ProductList)
+// const mapStateToProps =(state) =>{
+//     return {
+//         products:state.products.items
+//     }
+// }
+// const mapDispatchToProps = (dispatch) =>{
+//     return {
+//         fetchProducts:()=>dispatch(fetchProducts())
+//     }
+// }
+export default connect((state) =>({products:state.products.filteredItems}),{fetchProducts})(ProductList)
 
 const ProductListWarp = styled.div`
     display:flex;
