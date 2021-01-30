@@ -24,7 +24,7 @@ function NavbarHeader() {
                     <NavLink ><Link to="/product">Product</Link></NavLink>
                     </NavItem>
                     <NavItem>
-                    <NavLink >GitHub</NavLink>
+                    <NavLink ><Link to="/cart">Cart</Link></NavLink>
                     </NavItem>
                 </Nav>
                 <NavbarText>Simple Text</NavbarText>

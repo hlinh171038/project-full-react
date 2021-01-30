@@ -4,7 +4,8 @@ import Product from './Product'
 import Filter from './Filter'
 import {connect} from 'react-redux'
 import {fetchProducts} from './redux/Product/ProductActions'
-function ProductList({products,fetchProducts}) {
+import {addToCart} from './redux/Cart/CartActions'
+function ProductList({products,fetchProducts,addToCart,cartItems}) {
     //call API product
     useEffect(() => {
        fetchProducts()
@@ -16,7 +17,7 @@ function ProductList({products,fetchProducts}) {
     </div>
     <ProductListWarp className="col-md-8">
      {   products &&  products.map(product =>{
-        return <Product title={product.title} image={product.image}/>
+        return <Product title={product.title} image={product.image} addToCart={() =>addToCart(cartItems,product)}/>
     })}
     </ProductListWarp>
     </div>
@@ -38,7 +39,7 @@ function ProductList({products,fetchProducts}) {
 //         fetchProducts:()=>dispatch(fetchProducts())
 //     }
 // }
-export default connect((state) =>({products:state.products.filteredItems}),{fetchProducts})(ProductList)
+export default connect((state) =>({products:state.products.filteredItems,cartItems:state.cart.cartItems}),{fetchProducts,addToCart})(ProductList)
 
 const ProductListWarp = styled.div`
     display:flex;

@@ -55,3 +55,9 @@ front-end
     + redux for product to call all product
     + fetchPeoduct ( axios) to call data
 6.filter
+7.cart page
+    + redux cart
+    + addToCArt
+    + removeFromCart
+    + cart page
+    + cart list page

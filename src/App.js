@@ -15,6 +15,7 @@ import Header from './component/Header'
 import NavbarHeader from './component/NavbarHeader'
 import Footer from './component/Footer'
 import ProductList from './component/ProductList'
+import CartList from './component/CartList'
 
 import './App.css';
 
@@ -27,6 +28,9 @@ function App() {
         <Switch>
           <Route exact path="/product">
             <ProductList />
+          </Route>
+          <Route exact path="/cart">
+            <CartList />
           </Route>
         </Switch>
         <Footer/>
