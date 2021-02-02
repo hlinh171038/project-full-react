@@ -61,3 +61,7 @@ front-end
     + removeFromCart
     + cart page
     + cart list page
+8.order page
+    + carete server to put api user's information
+    + redux order
+    

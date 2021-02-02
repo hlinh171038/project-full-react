@@ -39,3 +39,31 @@ export const removeFromCart = (cart,product) =>(dispatch)=>{
     
    
 }
+export const handdleAddCount = (cart,currentCount)  =>(dispatch) =>{
+   const cartItems = cart.slice();
+    const index = cartItems.indexOf(currentCount);
+    const result = [
+        ...cartItems.slice(0,index),
+       {...currentCount,count:currentCount.count+1},
+        ...cartItems.slice(index+1)
+    ]
+   dispatch({
+       type:type.ADD_COUNT,
+       payload:result
+   })
+   localStorage.setItem('cartItems',JSON.stringify(result))
+} 
+export const handdleMinusCount = (cart,currentCount) =>dispatch =>{
+    const cartItems = cart.slice();
+    const index = cartItems.indexOf(currentCount);
+    const result = [
+        ...cartItems.slice(0,index),
+        {...currentCount,count:currentCount.count -1},
+        ...cartItems.slice(index +1)
+    ];
+    dispatch({
+        type:type.MINUS_COUNT,
+        payload:result
+    })
+    localStorage.setItem('cartItems',JSON.stringify(result))
+}

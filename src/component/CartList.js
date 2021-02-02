@@ -1,8 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import {connect} from 'react-redux'
-import {removeFromCart} from './redux/Cart/CartActions'
-function CartList({cartItems,removeFromCart}) {
+import {removeFromCart,handdleAddCount,handdleMinusCount} from './redux/Cart/CartActions'
+import Order from './Order'
+import Checkout from './Checkout'
+
+function CartList({cartItems,removeFromCart,handdleAddCount,count,handdleMinusCount}) {
     return cartItems.length===0 ?(
         <h2 className="m-5 text-primary text-center">Cart is empty</h2>
     ):(
@@ -27,24 +30,36 @@ function CartList({cartItems,removeFromCart}) {
                             })}
                         </td>
                         <td>
-                            <button>+</button>
+                            <button onClick={()=>handdleAddCount(cartItems,item)} disabled={item.count>=10?true:false}>+</button>
                             <span>{item.count}</span>
-                            <button>-</button>
+                            <button onClick={()=>handdleMinusCount(cartItems,item)} disabled={item.count<=1?true:false}>-</button>
                         </td>
                         <td> <button color="secondary"  onClick={() =>removeFromCart(cartItems,item)}>X</button></td>
                     </tr> 
                         
                 })}
-              
+                <tr><td><div style={{color:"white"}}>.</div></td></tr>
+              <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td><Checkout/></td>
+              </tr>
             </table>
-            <div className="col-md-4">Order</div>
+            
+            <div className="col-md-4">Order
+                <Order />
+            </div>
         </CartWarap>
     )
 }
 export default connect((state) =>({
-    cartItems:state.cart.cartItems
+    cartItems:state.cart.cartItems,
 }),{
-    removeFromCart
+    removeFromCart,
+    handdleAddCount,
+    handdleMinusCount
 })(CartList)
 
 const CartWarap =  styled.div`
